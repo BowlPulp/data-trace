@@ -1,0 +1,4 @@
+run_id,source,batch_id,window_start,window_end,started_at,finished_at,status,rows_received,rows_loaded,rows_rejected,error_summary
+247,payments_api,pay_20261031T0600,2026-10-31T06:00:00+05:30,2026-10-31T12:00:00+05:30,2026-11-02T03:06:00+05:30,2026-11-02T03:10:00+05:30,succeeded,14,14,0,backfill after provider outage
+248,payments_api,pay_20261031T1200,2026-10-31T12:00:00+05:30,2026-10-31T18:00:00+05:30,2026-11-02T03:06:00+05:30,2026-11-02T03:10:00+05:30,succeeded,22,22,0,backfill after provider outage
+249,payments_api,pay_20261031T1800,2026-10-31T18:00:00+05:30,2026-11-01T00:00:00+05:30,2026-11-02T03:06:00+05:30,2026-11-02T03:10:00+05:30,succeeded,18,18,0,backfill after provider outage

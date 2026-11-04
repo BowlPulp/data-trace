@@ -1,0 +1,6 @@
+issue_id,title,mechanism,oct_isolated_impact
+ISSUE-1,Payments missing from ingestion,Two payments_api batches on 2026-10-22 had every row rejected (epoch-millis timestamps); run marked succeeded; rows only in ops.ingestion_dead_letter,119934
+ISSUE-2,Valid payment status excluded,stg_payments keeps status = 'captured' only; provider added 'auto_captured' (UPI AutoPay) on 2026-10-10,231751
+ISSUE-3,Refund fan-out,int_transactions joins refunds to payments on order_id instead of payment_id; split-payment orders subtract refunds twice,41140
+ISSUE-4,Stale monthly model,"monthly_revenue was built by the month_close job before the Oct 31 payments were backfilled; the nightly job only rebuilds +fct_revenue, so monthly_revenue is never refreshed",126833
+DECOY-1,Duplicate raw payment rows (not a revenue bug),"2026-10-09 batches delivered twice; stg_payments deduplicates by payment_id, so revenue is unaffected",0

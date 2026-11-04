@@ -1,0 +1,39 @@
+version: 2
+
+sources:
+  - name: raw
+    description: Source systems as landed by the ingestion service (append-only).
+    schema: raw
+    loaded_at_field: _loaded_at
+    freshness:
+      warn_after: {count: 12, period: hour}
+      error_after: {count: 48, period: hour}
+    tables:
+      - name: raw_orders
+        columns:
+          - name: order_id
+            data_tests: [unique, not_null]
+      - name: raw_payments
+        description: Payments API landing table. One row per delivered record; no primary key.
+        columns:
+          - name: payment_id
+            data_tests: [not_null]
+          - name: status
+            data_tests:
+              - accepted_values:
+                  arguments:
+                    values: ["captured", "failed", "pending"]
+                  config:
+                    severity: warn
+      - name: raw_refunds
+        columns:
+          - name: refund_id
+            data_tests: [unique, not_null]
+      - name: raw_customers
+        columns:
+          - name: customer_id
+            data_tests: [unique, not_null]
+      - name: raw_products
+        columns:
+          - name: product_id
+            data_tests: [unique, not_null]

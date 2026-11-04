@@ -1,0 +1,14 @@
+# Project-local profile: run dbt from this directory (dbt looks here first).
+# Credentials come from the environment (.env), never from this file.
+datatrace:
+  target: dev
+  outputs:
+    dev:
+      type: postgres
+      host: 127.0.0.1
+      port: "{{ env_var('WAREHOUSE_PORT', '55432') | int }}"
+      dbname: "{{ env_var('WAREHOUSE_DB', 'datatrace') }}"
+      user: dbt_runner
+      password: "{{ env_var('DBT_RUNNER_PASSWORD') }}"
+      schema: analytics
+      threads: 4

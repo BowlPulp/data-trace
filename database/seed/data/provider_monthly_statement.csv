@@ -1,0 +1,3 @@
+statement_month,gross_collections,refunds,net_collections,successful_payments,refund_count,generated_at
+2026-09-01,3447242,117717,3329525,943,52,2026-11-03T06:00:00+05:30
+2026-10-01,4832944,207361,4625583,1349,101,2026-11-03T06:00:00+05:30

@@ -1,0 +1,3 @@
+# Verified to resolve together on Python 3.10+ (we use 3.12 in .venv)
+dbt-core==1.11.16
+dbt-postgres==1.11.0

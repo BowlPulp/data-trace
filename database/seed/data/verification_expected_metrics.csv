@@ -1,0 +1,11 @@
+metric,month,value,note
+gross_revenue,2026-09-01,3447242,ground truth: all successful payments
+refunds,2026-09-01,117717,ground truth: refunds processed in month
+net_revenue,2026-09-01,3329525,ground truth; equals provider net_collections
+net_revenue_reported_monthly_model,2026-09-01,3308525,"expected value of analytics.monthly_revenue (built 2026-11-01 01:00 IST, all bugs)"
+net_revenue_fct_current,2026-09-01,3308525,expected sum of analytics.fct_revenue after the nightly job (not stale)
+gross_revenue,2026-10-01,4832944,ground truth: all successful payments
+refunds,2026-10-01,207361,ground truth: refunds processed in month
+net_revenue,2026-10-01,4625583,ground truth; equals provider net_collections
+net_revenue_reported_monthly_model,2026-10-01,4149255,"expected value of analytics.monthly_revenue (built 2026-11-01 01:00 IST, all bugs)"
+net_revenue_fct_current,2026-10-01,4263631,expected sum of analytics.fct_revenue after the nightly job (not stale)

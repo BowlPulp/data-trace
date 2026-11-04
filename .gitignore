@@ -1,0 +1,37 @@
+# Secrets — never commit
+.env
+.env.*
+!.env.example
+
+# Switch writes per-agent API tokens here (it also adds its own .gitignore)
+.switch/
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# dbt
+dbt_project/target/
+dbt_project/dbt_packages/
+dbt_project/logs/
+logs/
+
+# Node / Next.js
+node_modules/
+frontend/.next/
+frontend/out/
+
+# Claude Code local-only settings
+.claude/settings.local.json
+
+# OS / editors
+.DS_Store
+.idea/
+.vscode/
+
+# Pipeline run history produced by scripts/pipeline-replay.sh
+pipeline_logs/

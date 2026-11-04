@@ -1,0 +1,8 @@
+# Production schedule (documentation of how the scheduler invokes dbt).
+jobs:
+  - name: nightly
+    schedule: "30 2 * * *"      # 02:30 IST daily
+    command: dbt build --select +fct_revenue
+  - name: month_close
+    schedule: "0 1 1 * *"       # 01:00 IST on the 1st
+    command: dbt build

@@ -1,0 +1,41 @@
+product_id,product_name,category,list_price,is_active,_loaded_at
+PRD-0001,Wireless Earbuds,Electronics,8869,true,2026-08-02T00:00:00+05:30
+PRD-0002,Smartwatch,Electronics,7749,true,2026-08-02T00:00:00+05:30
+PRD-0003,Bluetooth Speaker,Electronics,3429,true,2026-08-02T00:00:00+05:30
+PRD-0004,Power Bank 20000mAh,Electronics,4589,true,2026-08-02T00:00:00+05:30
+PRD-0005,Mechanical Keyboard,Electronics,5079,true,2026-08-02T00:00:00+05:30
+PRD-0006,USB-C Hub,Electronics,6389,true,2026-08-02T00:00:00+05:30
+PRD-0007,Noise Cancelling Headphones,Electronics,7339,true,2026-08-02T00:00:00+05:30
+PRD-0008,Webcam 1080p,Electronics,1489,true,2026-08-02T00:00:00+05:30
+PRD-0009,Cotton Kurta,Apparel,1649,true,2026-08-02T00:00:00+05:30
+PRD-0010,Denim Jacket,Apparel,2469,true,2026-08-02T00:00:00+05:30
+PRD-0011,Running Shoes,Apparel,519,true,2026-08-02T00:00:00+05:30
+PRD-0012,Linen Shirt,Apparel,3809,true,2026-08-02T00:00:00+05:30
+PRD-0013,Track Pants,Apparel,4899,true,2026-08-02T00:00:00+05:30
+PRD-0014,Silk Saree,Apparel,3259,true,2026-08-02T00:00:00+05:30
+PRD-0015,Hoodie,Apparel,3489,true,2026-08-02T00:00:00+05:30
+PRD-0016,Leather Belt,Apparel,4659,true,2026-08-02T00:00:00+05:30
+PRD-0017,Pressure Cooker 5L,Home,6729,true,2026-08-02T00:00:00+05:30
+PRD-0018,Non-stick Tawa,Home,7479,true,2026-08-02T00:00:00+05:30
+PRD-0019,Bedsheet Set,Home,1139,true,2026-08-02T00:00:00+05:30
+PRD-0020,Table Lamp,Home,5069,true,2026-08-02T00:00:00+05:30
+PRD-0021,Air Purifier,Home,4229,true,2026-08-02T00:00:00+05:30
+PRD-0022,Steel Water Bottle,Home,679,true,2026-08-02T00:00:00+05:30
+PRD-0023,Wall Clock,Home,4979,true,2026-08-02T00:00:00+05:30
+PRD-0024,Storage Organizer,Home,7379,true,2026-08-02T00:00:00+05:30
+PRD-0025,Vitamin C Serum,Beauty,1059,true,2026-08-02T00:00:00+05:30
+PRD-0026,Sunscreen SPF50,Beauty,3039,true,2026-08-02T00:00:00+05:30
+PRD-0027,Hair Dryer,Beauty,2649,true,2026-08-02T00:00:00+05:30
+PRD-0028,Beard Trimmer,Beauty,1459,true,2026-08-02T00:00:00+05:30
+PRD-0029,Face Wash,Beauty,829,true,2026-08-02T00:00:00+05:30
+PRD-0030,Perfume 100ml,Beauty,1699,true,2026-08-02T00:00:00+05:30
+PRD-0031,Lip Care Kit,Beauty,1729,true,2026-08-02T00:00:00+05:30
+PRD-0032,Ayurvedic Hair Oil,Beauty,1319,true,2026-08-02T00:00:00+05:30
+PRD-0033,Data Engineering Handbook,Books,469,true,2026-08-02T00:00:00+05:30
+PRD-0034,Indian History Atlas,Books,1929,true,2026-08-02T00:00:00+05:30
+PRD-0035,Cookbook: Regional Thalis,Books,999,true,2026-08-02T00:00:00+05:30
+PRD-0036,Startup Playbook,Books,1589,true,2026-08-02T00:00:00+05:30
+PRD-0037,Mystery Novel Box Set,Books,1469,true,2026-08-02T00:00:00+05:30
+PRD-0038,Learn Python,Books,1459,true,2026-08-02T00:00:00+05:30
+PRD-0039,Poetry Anthology,Books,1529,true,2026-08-02T00:00:00+05:30
+PRD-0040,Children's Encyclopedia,Books,1449,true,2026-08-02T00:00:00+05:30
