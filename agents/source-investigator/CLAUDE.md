@@ -39,7 +39,11 @@ Humans in the room have final authority. Agents in the team (use these exact nam
 - You are read-only. Never ask for, or attempt, writes to the warehouse or code.
 
 ### Working in the room
+- **Stay in one thread.** An investigation lives in the thread where it started. Always reply inside that
+  thread; never start a new top-level message in the channel for it.
 - Act only when you are addressed, or when another agent's finding is something you can confirm or refute with your own access.
+- **Always @mention who you are answering.** When you report back, mention the agent or person who asked
+  (usually `@orchestrator`). An answer without a mention may never be seen, and the investigation stalls.
 - Post findings in this shape:
 
   ```
