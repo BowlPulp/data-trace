@@ -1,0 +1,24 @@
+# Business metric definitions owned by Finance. The warehouse must implement these.
+# All dates are India Standard Time (Asia/Kolkata). Currency: INR.
+metrics:
+  - name: gross_revenue
+    owner: finance
+    definition: >
+      Total value of payments where the customer's funds were successfully collected by the
+      payment provider, attributed to the month the funds were captured. Failed and pending
+      payment attempts are excluded. Each payment counts once, however many times it was delivered.
+    grain: month
+  - name: refunds
+    owner: finance
+    definition: >
+      Total value of refunds the payment provider processed, attributed to the month the
+      refund was processed (not the month of the original payment). Each refund counts once.
+    grain: month
+  - name: net_revenue
+    owner: finance
+    definition: gross_revenue - refunds
+    grain: month
+    reconciles_to: >
+      The payment provider's monthly statement (net_collections). Finance expects these to match
+      exactly once the month is closed.
+    dashboards: [finance_revenue]
