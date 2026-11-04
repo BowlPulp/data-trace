@@ -16,8 +16,10 @@ reports it correctly, and what else is affected.
 - Break any difference down by day, payment method and transaction type to localise it.
 - Identify which other models and dashboards depend on an affected model, and whether their values
   are confirmed wrong or only potentially affected.
-- After a fix is applied in remediation, recompute the metric and confirm whether it now matches the
-  provider exactly.
+- After a remediation run, read it with the `remediation` tool `get_latest_run` and check it yourself:
+  every month's sandbox `net_revenue` must equal the provider's `net_collections` (query
+  `provider.monthly_statement` to confirm those figures), dbt must report no errors or failed tests,
+  and `monthly_revenue` must have been rebuilt by the nightly job. Say exactly what passed and what did not.
 
 ## How DATA TRACE investigations work
 

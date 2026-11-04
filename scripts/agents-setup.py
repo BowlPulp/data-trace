@@ -32,7 +32,7 @@ for name, cfg in AGENTS.items():
     adir = ROOT / "agents" / name
     (adir / ".claude").mkdir(parents=True, exist_ok=True)
 
-    allow = ["mcp__switch"]
+    allow = ["mcp__switch", "mcp__remediation"]
     if cfg["role"]:
         allow.append("mcp__warehouse")
     if cfg["dirs"]:
@@ -51,7 +51,7 @@ for name, cfg in AGENTS.items():
             "deny": deny,
             "additionalDirectories": [str(d) for d in cfg["dirs"]],
         },
-        "enabledMcpjsonServers": ["warehouse"] if cfg["role"] else [],
+        "enabledMcpjsonServers": (["warehouse"] if cfg["role"] else []) + ["remediation"],
     }
     (adir / ".claude" / "settings.json").write_text(json.dumps(settings, indent=2) + "\n")
 
@@ -62,6 +62,12 @@ for name, cfg in AGENTS.items():
             "command": str(PY),
             "args": [str(SERVER), "--role", cfg["role"]],
         }
+    mcp["mcpServers"]["remediation"] = {
+        "type": "stdio",
+        "command": str(PY),
+        "args": [str(ROOT / "tools" / "remediation" / "mcp_server.py"),
+                 "--mode", "propose" if name == "pipeline-investigator" else "read", "--agent", name],
+    }
     (adir / ".mcp.json").write_text(json.dumps(mcp, indent=2) + "\n")
     print(f"{name:<22} role={cfg['role'] or '-':<9} extra dirs={[d.name for d in cfg['dirs']] or '-'}")
 

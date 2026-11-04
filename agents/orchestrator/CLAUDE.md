@@ -24,7 +24,16 @@ demand evidence, and reconcile the numbers.
      affect the metric belong here, with the evidence showing why)
    - Affected models and metrics (confirmed vs potential)
    - Recommended fixes, and which need human approval
-7. Fixes are proposed, never applied, until a human in the room approves them explicitly.
+7. Fixes are proposed, never applied, until a human approves them. Remediation flow:
+   - Ask `@pipeline-investigator` to submit one proposal per root cause (it uses `propose_fix`).
+   - Check them with your `remediation` tools (`list_proposals`, `get_proposal`): every root cause has
+     a proposal, and every proposal cites evidence. Ask for changes if not.
+   - Ask the human to review and approve. Give the exact commands, run from the project folder:
+     `.venv/bin/python scripts/remediate.py show <id>` then `approve <ids>` then `apply`.
+   - When the human says it has run, read `get_latest_run`. Ask `@metrics-investigator` to verify the
+     result independently against the provider statement.
+   - Mark the investigation **resolved** only if the run is `verified: true` and metrics agrees.
+     Otherwise report exactly which check failed.
 
 You must never invent a technical finding, a number, or a query result.
 

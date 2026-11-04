@@ -14,6 +14,7 @@ services:
       AGENT_PIPELINE_PASSWORD: ${AGENT_PIPELINE_PASSWORD:?set in .env}
       AGENT_METRICS_PASSWORD: ${AGENT_METRICS_PASSWORD:?set in .env}
       DBT_RUNNER_PASSWORD: ${DBT_RUNNER_PASSWORD:?set in .env}
+      REMEDIATION_RUNNER_PASSWORD: ${REMEDIATION_RUNNER_PASSWORD:?set in .env}
     ports:
       # Localhost only — never exposed on the network.
       - "127.0.0.1:${WAREHOUSE_PORT:-55432}:5432"

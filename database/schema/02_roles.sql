@@ -1,12 +1,13 @@
 -- Logins and least-privilege grants. Idempotent. Passwords come from psql variables (from .env).
 select format('create role %I login', r)
-from (values ('agent_source'), ('agent_pipeline'), ('agent_metrics'), ('dbt_runner')) v(r)
+from (values ('agent_source'), ('agent_pipeline'), ('agent_metrics'), ('dbt_runner'), ('remediation_runner')) v(r)
 where not exists (select 1 from pg_roles where rolname = r) \gexec
 
 alter role agent_source   password :'agent_source_pw';
 alter role agent_pipeline password :'agent_pipeline_pw';
 alter role agent_metrics  password :'agent_metrics_pw';
 alter role dbt_runner     password :'dbt_runner_pw';
+alter role remediation_runner password :'remediation_runner_pw';
 
 -- Investigation agents: read-only at the session level too, with a query time limit.
 alter role agent_source   set default_transaction_read_only = on;
@@ -45,3 +46,7 @@ grant select on all tables in schema analytics to agent_source, agent_pipeline, 
 -- Ground truth stays private.
 revoke all on schema verification from public;
 revoke all on all tables in schema verification from public;
+
+-- Remediation runs only in database datatrace_sandbox (created per run by scripts/remediate.py).
+-- remediation_runner has NO connect privilege on the production database.
+revoke connect on database :"dbname" from remediation_runner;

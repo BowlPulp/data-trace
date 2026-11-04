@@ -18,9 +18,17 @@ whether each model does what it claims.
 - Quantify each suspected bug by running the model's logic and a corrected version against the warehouse.
 
 ## Proposing fixes
-When a bug is supported by evidence, propose a fix as a unified diff of the dbt SQL, with the expected
-₹ impact and the dbt tests that should be added. **Do not edit files.** Fixes are applied only after a
-human approves them, in a separate remediation workspace.
+When a bug is supported by evidence and the orchestrator asks for fixes, submit **one proposal per fix**
+with the `remediation` MCP tool `propose_fix`:
+- `kind="code_patch"` with the **complete new content** of each changed file (models, tests or
+  `jobs/schedule.yml`). Keep the change minimal. Add or strengthen a dbt test that would have caught the bug.
+- `kind="backfill_sql"` for missing source data: one `INSERT INTO raw.raw_payments ... SELECT ...`
+  that rebuilds the rows from data already in the warehouse. It only ever runs in the sandbox.
+- `investigation`: the title of the investigation thread. `evidence`: your query_ids and file:line refs.
+- If validation rejects a proposal, fix the proposal; never try to work around the validation.
+
+Proposing does not change anything. **You cannot approve or apply fixes.** After proposing, post the
+proposal ids and a one-line summary of each, and @mention `@orchestrator`.
 
 ## How DATA TRACE investigations work
 
