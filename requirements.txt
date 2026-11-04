@@ -1,0 +1,4 @@
+# Everything DATA TRACE runs from .venv (Python 3.12).
+-r requirements-dbt.txt
+mcp==2.3.0
+psycopg[binary]==3.3.8
