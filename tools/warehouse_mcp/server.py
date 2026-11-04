@@ -80,11 +80,12 @@ def build_server(role: str) -> MCPServer:
         with log_path.open("a") as fh:
             fh.write(json.dumps(entry, default=str) + "\n")
 
-    def query(sql: str, params: tuple = (), max_rows: int = MAX_ROWS_CAP) -> tuple[list[str], list[list[Any]], bool]:
+    def query(sql: str, params: tuple | None = None, max_rows: int = MAX_ROWS_CAP) -> tuple[list[str], list[list[Any]], bool]:
         with psycopg.connect(conninfo) as conn:
             conn.read_only = True
             with conn.cursor() as cur:
-                cur.execute(sql, params)
+                # params=None: psycopg then leaves '%' alone (agents' LIKE 'x%' must work)
+                cur.execute(sql, params or None)
                 if cur.description is None:
                     return [], [], False
                 cols = [d.name for d in cur.description]
@@ -104,22 +105,31 @@ def build_server(role: str) -> MCPServer:
     @server.tool(annotations=READ_ONLY)
     def list_tables() -> dict[str, Any]:
         """List every table and view this agent is allowed to read, with its description."""
-        cols, rows, _ = query(
-            """
-            select c.table_schema, c.table_name, c.table_type,
-                   obj_description(format('%I.%I', c.table_schema, c.table_name)::regclass) as description
-            from information_schema.tables c
-            where c.table_schema not in ('pg_catalog', 'information_schema')
-              and has_table_privilege(format('%I.%I', c.table_schema, c.table_name), 'SELECT')
-            order by 1, 2
-            """
-        )
+        try:
+            cols, rows, _ = query(
+                """
+                select n.nspname as table_schema, c.relname as table_name,
+                       case c.relkind when 'v' then 'VIEW' when 'm' then 'MATERIALIZED VIEW' else 'TABLE' end as table_type,
+                       obj_description(c.oid, 'pg_class') as description
+                from pg_catalog.pg_class c
+                join pg_catalog.pg_namespace n on n.oid = c.relnamespace
+                where c.relkind in ('r', 'v', 'm', 'p')
+                  and n.nspname not in ('pg_catalog', 'information_schema')
+                  and left(n.nspname, 3) <> 'pg_'
+                  and has_schema_privilege(n.oid, 'USAGE')
+                  and has_table_privilege(c.oid, 'SELECT')
+                order by 1, 2
+                """
+            )
+        except psycopg.Error as e:
+            return {"error": (e.diag.message_primary if getattr(e, "diag", None) else None) or str(e)}
         return {"role": user, "tables": [dict(zip(cols, r)) for r in rows]}
 
     @server.tool(annotations=READ_ONLY)
     def describe_table(schema: str, table: str) -> dict[str, Any]:
         """Columns, types, nullability and exact row count of one table or view."""
-        cols, rows, _ = query(
+        try:
+            cols, rows, _ = query(
             """
             select column_name, data_type, is_nullable
             from information_schema.columns
@@ -127,7 +137,9 @@ def build_server(role: str) -> MCPServer:
             order by ordinal_position
             """,
             (schema, table),
-        )
+            )
+        except psycopg.Error as e:
+            return {"error": (e.diag.message_primary if getattr(e, "diag", None) else None) or str(e)}
         if not rows:
             return {"error": f"{schema}.{table} not found or not readable by {user}"}
         try:

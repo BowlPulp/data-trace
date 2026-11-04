@@ -11,6 +11,7 @@ from mcp.client.stdio import StdioServerParameters, stdio_client
 SERVER = Path(__file__).with_name("server.py")
 CASES = [
     ("source", "select count(*) as n from raw.raw_payments", "ok"),
+    ("source", "select count(*) as n from raw.raw_payments where upi_vpa like '%@paytm'", "ok"),
     ("source", "select * from verification.expected_metrics", "error"),
     ("source", "delete from raw.raw_payments", "error"),
     ("source", "select 1; drop table raw.raw_orders", "error"),
@@ -25,7 +26,11 @@ def payload(res):
     structured = getattr(res, "structured_content", None)
     if structured:
         return structured
-    return json.loads(res.content[0].text)
+    text = res.content[0].text if res.content else ""
+    try:
+        return json.loads(text)
+    except json.JSONDecodeError:
+        return {"error": f"tool error: {text}"}
 
 
 async def run_role(role, cases):
@@ -34,7 +39,11 @@ async def run_role(role, cases):
         async with ClientSession(r, w) as s:
             await s.initialize()
             tools = [t.name for t in (await s.list_tools()).tools]
-            tables = payload(await s.call_tool("list_tables", {}))["tables"]
+            listing = payload(await s.call_tool("list_tables", {}))
+            if "error" in listing:
+                print(f"\n[{role}] list_tables FAILED: {listing['error']}")
+                return False
+            tables = listing["tables"]
             print(f"\n[{role}] tools={tools} readable_tables={len(tables)} "
                   f"schemas={sorted({t['table_schema'] for t in tables})}")
             ok = True
