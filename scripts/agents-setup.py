@@ -17,9 +17,10 @@ SERVER = ROOT / "tools" / "warehouse_mcp" / "server.py"
 def abs_rule(tool: str, p: Path, glob: bool = True) -> str:
     return f"{tool}(/{p}{'/**' if glob else ''})"   # "//abs/path" = absolute path in Claude Code rules
 
-# Paths no investigation agent may read: generator + ground truth, secrets, raw audit logs, scripts, git.
-FORBIDDEN = [ROOT / "database", ROOT / "logs", ROOT / "scripts", ROOT / ".git", ROOT / "tools"]
-FORBIDDEN_FILES = [ROOT / ".env"]
+# Paths no investigation agent may read: generator + ground truth, secrets, raw audit logs, scripts, git,
+# and docs/README (past run reports and the scenario write-up contain the answers).
+FORBIDDEN = [ROOT / "database", ROOT / "logs", ROOT / "scripts", ROOT / ".git", ROOT / "tools", ROOT / "docs"]
+FORBIDDEN_FILES = [ROOT / ".env", ROOT / "README.md"]
 
 AGENTS = {
     "orchestrator":          {"role": None,       "dirs": []},
