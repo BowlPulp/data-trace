@@ -22,11 +22,16 @@ def abs_rule(tool: str, p: Path, glob: bool = True) -> str:
 FORBIDDEN = [ROOT / "database", ROOT / "logs", ROOT / "scripts", ROOT / ".git", ROOT / "tools", ROOT / "docs"]
 FORBIDDEN_FILES = [ROOT / ".env", ROOT / "README.md"]
 
+# Claude model per agent (Claude Code alias: "haiku", "sonnet", "opus", or a full model name;
+# None = the account default). Written to each agent's settings.json, so it reapplies at every launch.
+# Pinned to Opus 4.6 by full model name (the "opus" alias would resolve to the newest Opus).
+MODEL = "claude-opus-4-6"
+
 AGENTS = {
-    "orchestrator":          {"role": None,       "dirs": []},
-    "source-investigator":   {"role": "source",   "dirs": []},
-    "pipeline-investigator": {"role": "pipeline", "dirs": [ROOT / "dbt_project", ROOT / "pipeline_logs"]},
-    "metrics-investigator":  {"role": "metrics",  "dirs": [ROOT / "metrics"]},
+    "orchestrator":          {"role": None,       "dirs": [],                                             "model": MODEL},
+    "source-investigator":   {"role": "source",   "dirs": [],                                             "model": MODEL},
+    "pipeline-investigator": {"role": "pipeline", "dirs": [ROOT / "dbt_project", ROOT / "pipeline_logs"], "model": MODEL},
+    "metrics-investigator":  {"role": "metrics",  "dirs": [ROOT / "metrics"],                             "model": MODEL},
 }
 
 for name, cfg in AGENTS.items():
@@ -54,6 +59,8 @@ for name, cfg in AGENTS.items():
         },
         "enabledMcpjsonServers": (["warehouse"] if cfg["role"] else []) + ["remediation"],
     }
+    if cfg["model"]:
+        settings["model"] = cfg["model"]
     (adir / ".claude" / "settings.json").write_text(json.dumps(settings, indent=2) + "\n")
 
     mcp = {"mcpServers": {}}
@@ -70,7 +77,7 @@ for name, cfg in AGENTS.items():
                  "--mode", "propose" if name == "pipeline-investigator" else "read", "--agent", name],
     }
     (adir / ".mcp.json").write_text(json.dumps(mcp, indent=2) + "\n")
-    print(f"{name:<22} role={cfg['role'] or '-':<9} extra dirs={[d.name for d in cfg['dirs']] or '-'}")
+    print(f"{name:<22} role={cfg['role'] or '-':<9} model={cfg['model'] or 'default':<8} extra dirs={[d.name for d in cfg['dirs']] or '-'}")
 
 (ROOT / "pipeline_logs").mkdir(exist_ok=True)
 print(f"\nDone. Register each agent in Switch Console with Directory = {ROOT}/agents/<name>")

@@ -342,6 +342,9 @@ This writes, for each agent, `agents/<name>/.mcp.json` (its MCP servers and data
 `agents/<name>/.claude/settings.json` (allowed tools, readable directories, denied paths). These
 contain absolute paths, so they are gitignored — **re-run after cloning or moving the folder.**
 
+Every agent runs on **Claude Opus 4.6** (`MODEL = "claude-opus-4-6"` at the top of `scripts/agents-setup.py`).
+Change it there (an alias such as `haiku`, `sonnet`, `opus`, or a full model name) and re-run the script.
+
 ### 6.9 Register the agents in Switch
 
 In Switch Console:
@@ -357,9 +360,25 @@ In Switch Console:
    | `pipeline-investigator` | `<repo>/agents/pipeline-investigator` |
    | `metrics-investigator` | `<repo>/agents/metrics-investigator` |
 
-4. Add all four to the room. Claude Code picks up each agent's `CLAUDE.md`, `.mcp.json` and
-   `.claude/settings.json` automatically because the session starts in that directory.
+4. Invite all four into the room from the Discord channel (Switch links the channel to a new room
+   the first time):
+
+   ```text
+   !invite-agent @orchestrator
+   !invite-agent @source-investigator
+   !invite-agent @pipeline-investigator
+   !invite-agent @metrics-investigator
+   ```
+
+   (or the slash command `/invite-agent agent:<name>`). Each agent replies with a short hello.
+   Claude Code picks up each agent's `CLAUDE.md`, `.mcp.json` and `.claude/settings.json`
+   automatically because the session starts in that directory.
 5. Check each agent is online and shows the `warehouse` / `remediation` MCP tools.
+
+> **Tip: use a fresh channel for every investigation run.** Agents read the room's context when
+> they join, so findings from an earlier run can leak into a new one. `!reset-all-agents` resets
+> the agents' sessions in a channel; after changing `settings.json` (model, permissions), restart
+> the agents in Switch Console so they re-read it.
 
 The names matter: the briefs tell agents to `@mention` each other by these exact names.
 
