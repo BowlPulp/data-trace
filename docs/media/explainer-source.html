@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<style>
+:root{--bg:#0b1020;--panel:#131a2e;--line:#26304d;--text:#e8ecf6;--mute:#8b95b0;
+--orch:#a78bfa;--src:#38bdf8;--pipe:#f59e0b;--met:#34d399;--red:#f87171;--green:#4ade80;}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1920px;height:1080px;overflow:hidden;background:var(--bg);font-family:Inter,sans-serif;color:var(--text)}
+.mono{font-family:"DejaVu Sans Mono",monospace}
+.scene{position:absolute;inset:0;opacity:0}
+.abs{position:absolute}
+.grid{position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:80px 80px;opacity:.18}
+.kicker{font-size:28px;letter-spacing:.32em;text-transform:uppercase;color:var(--mute);font-weight:600}
+.h1{font-size:76px;font-weight:800;letter-spacing:-.02em}
+.card{background:var(--panel);border:2px solid var(--line);border-radius:22px}
+.chip{display:inline-block;padding:6px 14px;border-radius:999px;font-size:20px;font-weight:600;margin:4px 6px 0 0}
+.stamp{font-weight:900;letter-spacing:.12em;border:5px solid;border-radius:12px;padding:6px 18px}
+</style></head><body>
+<div class="grid"></div>
+
+<!-- S1 title -->
+<div class="scene" id="s1">
+  <div class="abs" style="left:0;right:0;top:330px;text-align:center">
+    <div class="kicker" id="s1k">Flip the Switch Hackathon · 2026</div>
+    <div id="s1t" style="font-size:170px;font-weight:900;letter-spacing:-.03em;margin-top:24px">DATA<span style="color:var(--src)"> TRACE</span></div>
+    <div id="s1s" style="font-size:44px;color:var(--mute);margin-top:18px">When your data doesn't add up, find out why.</div>
+  </div>
+  <div id="s1bar" class="abs" style="left:760px;top:780px;height:6px;width:400px;border-radius:3px;background:linear-gradient(90deg,var(--orch),var(--src),var(--pipe),var(--met));transform-origin:left"></div>
+</div>
+
+<!-- S2 problem -->
+<div class="scene" id="s2">
+  <div class="abs kicker" style="left:160px;top:140px">The ticket every data team dreads</div>
+  <div class="abs card" id="s2a" style="left:160px;top:250px;width:740px;height:330px;padding:44px">
+    <div style="font-size:30px;color:var(--mute)">Finance dashboard · Oct 2026 net revenue</div>
+    <div id="s2an" style="font-size:104px;font-weight:800;margin-top:40px">₹0</div>
+  </div>
+  <div class="abs card" id="s2b" style="left:1020px;top:250px;width:740px;height:330px;padding:44px">
+    <div style="font-size:30px;color:var(--mute)">Payment provider statement · Oct 2026</div>
+    <div id="s2bn" style="font-size:104px;font-weight:800;margin-top:40px">₹0</div>
+  </div>
+  <div class="abs" id="s2gap" style="left:0;right:0;top:660px;text-align:center">
+    <div style="font-size:34px;color:var(--mute)">Missing from the dashboard</div>
+    <div style="font-size:150px;font-weight:900;color:var(--red);margin-top:6px">₹4,76,328</div>
+  </div>
+  <div class="abs" id="s2q" style="left:0;right:0;top:960px;text-align:center;font-size:40px;font-weight:600">Where did it go?</div>
+</div>
+
+<!-- S3 team -->
+<div class="scene" id="s3">
+  <div class="abs kicker" style="left:160px;top:110px">One Switch room · four agents · one human</div>
+  <div class="abs h1" style="left:160px;top:160px" id="s3h">Each agent sees only its slice.</div>
+  <svg class="abs" style="left:0;top:0" width="1920" height="1080" id="s3svg">
+    <path id="l1" d="M960 470 L420 640" stroke="var(--src)" stroke-width="4" fill="none" stroke-dasharray="12 10"/>
+    <path id="l2" d="M960 470 L960 640" stroke="var(--pipe)" stroke-width="4" fill="none" stroke-dasharray="12 10"/>
+    <path id="l3" d="M960 470 L1500 640" stroke="var(--met)" stroke-width="4" fill="none" stroke-dasharray="12 10"/>
+    <path id="l0" d="M330 400 L780 400" stroke="var(--mute)" stroke-width="4" fill="none" stroke-dasharray="12 10"/>
+  </svg>
+  <div class="abs card" id="s3you" style="left:110px;top:330px;width:220px;height:140px;padding:22px;text-align:center">
+    <div style="font-size:48px">👤</div><div style="font-size:26px;font-weight:700">You</div>
+  </div>
+  <div class="abs card" id="s3o" style="left:780px;top:320px;width:360px;height:160px;padding:24px;border-color:var(--orch)">
+    <div style="font-size:30px;font-weight:800;color:var(--orch)">@orchestrator</div>
+    <div style="font-size:21px;color:var(--mute);margin-top:8px">Leads, keeps the ledger, demands evidence.</div>
+    <div style="font-size:20px;color:var(--red);margin-top:8px;font-weight:600">No data access</div>
+  </div>
+  <div class="abs card" id="s3s" style="left:180px;top:640px;width:500px;height:290px;padding:26px;border-color:var(--src)">
+    <div style="font-size:30px;font-weight:800;color:var(--src)">@source-investigator</div>
+    <div style="font-size:22px;color:var(--mute);margin:8px 0 10px">Did the data arrive intact?</div>
+    <span class="chip" style="background:#0c2a3a;color:var(--src)">raw</span><span class="chip" style="background:#0c2a3a;color:var(--src)">provider</span><span class="chip" style="background:#0c2a3a;color:var(--src)">ingestion logs</span>
+    <div style="font-size:20px;color:var(--red);margin-top:14px">✕ dbt code · metric definitions</div>
+  </div>
+  <div class="abs card" id="s3p" style="left:710px;top:640px;width:500px;height:290px;padding:26px;border-color:var(--pipe)">
+    <div style="font-size:30px;font-weight:800;color:var(--pipe)">@pipeline-investigator</div>
+    <div style="font-size:22px;color:var(--mute);margin:8px 0 10px">Does the transformation do what it claims?</div>
+    <span class="chip" style="background:#3a2a0c;color:var(--pipe)">dbt code</span><span class="chip" style="background:#3a2a0c;color:var(--pipe)">run logs</span><span class="chip" style="background:#3a2a0c;color:var(--pipe)">raw</span>
+    <div style="font-size:20px;color:var(--red);margin-top:14px">✕ provider statement · metrics</div>
+  </div>
+  <div class="abs card" id="s3m" style="left:1240px;top:640px;width:500px;height:290px;padding:26px;border-color:var(--met)">
+    <div style="font-size:30px;font-weight:800;color:var(--met)">@metrics-investigator</div>
+    <div style="font-size:22px;color:var(--mute);margin:8px 0 10px">Is the metric right? What else is affected?</div>
+    <span class="chip" style="background:#0c3a2a;color:var(--met)">metric defs</span><span class="chip" style="background:#0c3a2a;color:var(--met)">dashboard SQL</span><span class="chip" style="background:#0c3a2a;color:var(--met)">provider</span>
+    <div style="font-size:20px;color:var(--red);margin-top:14px">✕ raw tables · dbt code · logs</div>
+  </div>
+  <div class="abs" id="s3f" style="left:0;right:0;top:972px;text-align:center;font-size:30px;color:var(--mute)">No one can solve it alone. They have to work it out together, in the thread.</div>
+</div>
+
+<!-- S4 evidence chat -->
+<div class="scene" id="s4">
+  <div class="abs kicker" style="left:160px;top:110px">Evidence or it didn't happen</div>
+  <div class="abs h1" style="left:160px;top:160px">Every claim cites a logged query.</div>
+  <div class="abs card" id="s4c" style="left:160px;top:310px;width:1000px;padding:34px 40px">
+    <div style="font-size:24px;font-weight:800;color:var(--src)">source-investigator</div>
+    <div class="mono" style="font-size:25px;line-height:1.55;margin-top:14px;white-space:pre" id="s4txt"></div>
+  </div>
+  <div class="abs card mono" id="s4log" style="left:1220px;top:360px;width:560px;padding:30px;font-size:21px;line-height:1.6;color:var(--mute);border-style:dashed">
+    <div style="color:var(--text);font-family:Inter;font-weight:700;font-size:24px;margin-bottom:10px">logs/agent_queries/source.jsonl</div>
+    "query_id": <span style="color:var(--src)">"q_aed4a7ad0e"</span>,<br>"role": "agent_source",<br>"sql": "select … from provider<br>&nbsp;&nbsp;left join raw … is null",<br>"rows": 31, "ok": true
+  </div>
+  <svg class="abs" style="left:0;top:0" width="1920" height="1080"><path id="s4arrow" d="M1162 520 C 1190 520, 1190 470, 1220 470" stroke="var(--src)" stroke-width="4" fill="none"/></svg>
+</div>
+
+<!-- S5 lineage bugs -->
+<div class="scene" id="s5">
+  <div class="abs kicker" style="left:160px;top:110px">What they found</div>
+  <div class="abs h1" style="left:160px;top:160px">Four bugs. Three layers.</div>
+  <div id="s5nodes"></div>
+  <div class="abs" id="s5d1" style="left:160px;top:900px;font-size:30px;color:var(--mute)"><span style="color:var(--green)">✓ ruled out</span>&nbsp; time-zone month boundaries</div>
+  <div class="abs" id="s5d2" style="left:820px;top:900px;font-size:30px;color:var(--mute)"><span style="color:var(--green)">✓ ruled out</span>&nbsp; duplicate raw rows (deduplicated)</div>
+</div>
+
+<!-- S6 ledger -->
+<div class="scene" id="s6">
+  <div class="abs kicker" style="left:160px;top:110px">The ledger</div>
+  <div class="abs h1" style="left:160px;top:160px">Reconciled to the rupee.</div>
+  <div class="abs" style="left:160px;top:360px;width:1600px;height:120px;border:3px dashed var(--red);border-radius:16px"></div>
+  <div id="s6bars"></div>
+  <div class="abs" id="s6labels"></div>
+  <div class="abs" id="s6sum" style="left:160px;top:820px;font-size:44px;font-weight:700">Gap <span style="color:var(--red)">₹4,76,328</span> &nbsp;·&nbsp; Explained <span id="s6exp" style="color:var(--green)">₹0</span></div>
+  <div class="abs" id="s6zero" style="left:160px;top:900px;font-size:64px;font-weight:900;color:var(--green)">Unexplained: ₹0</div>
+</div>
+
+<!-- S7 review -->
+<div class="scene" id="s7">
+  <div class="abs kicker" style="left:160px;top:110px">Agents propose · a human decides</div>
+  <div class="abs h1" style="left:160px;top:160px">Nothing changes without approval.</div>
+  <div id="s7cards"></div>
+  <div class="abs" id="s7note" style="left:160px;top:930px;font-size:32px;color:var(--mute)">Review caught two flawed fixes. The agent corrected both in minutes.</div>
+</div>
+
+<!-- S8 verify -->
+<div class="scene" id="s8">
+  <div class="abs kicker" style="left:160px;top:110px">Sandbox run · separate git branch · production untouched</div>
+  <div class="abs h1" style="left:160px;top:160px">Then it proves the fix.</div>
+  <div class="abs card" style="left:160px;top:320px;width:1180px;padding:20px 44px" id="s8t">
+    <div style="display:grid;grid-template-columns:260px 330px 330px 140px;font-size:28px;color:var(--mute);padding:18px 0;border-bottom:2px solid var(--line)"><div>Month</div><div>Provider</div><div>Dashboard</div><div></div></div>
+    <div id="s8r1" style="display:grid;grid-template-columns:260px 330px 330px 140px;font-size:44px;font-weight:700;padding:26px 0;border-bottom:2px solid var(--line)"><div>Sep 2026</div><div>₹33,29,525</div><div id="s8d1">₹33,08,525</div><div id="s8c1" style="color:var(--green)">✓</div></div>
+    <div id="s8r2" style="display:grid;grid-template-columns:260px 330px 330px 140px;font-size:44px;font-weight:700;padding:26px 0"><div>Oct 2026</div><div>₹46,25,583</div><div id="s8d2">₹41,49,255</div><div id="s8c2" style="color:var(--green)">✓</div></div>
+  </div>
+  <div class="abs mono" id="s8dbt" style="left:160px;top:720px;font-size:30px;color:var(--mute)">dbt build --select +monthly_revenue &nbsp;→&nbsp; <span style="color:var(--green)">PASS=18 WARN=0 ERROR=0</span></div>
+  <div class="abs stamp" id="s8v" style="left:1420px;top:440px;font-size:76px;color:var(--green);border-color:var(--green)">VERIFIED</div>
+</div>
+
+<!-- S9 close -->
+<div class="scene" id="s9">
+  <div class="abs" style="left:0;right:0;top:200px;text-align:center">
+    <div style="font-size:120px;font-weight:900;letter-spacing:-.03em">DATA<span style="color:var(--src)"> TRACE</span></div>
+  </div>
+  <div class="abs" style="left:420px;top:420px;width:1080px" id="s9list"></div>
+  <div class="abs" id="s9foot" style="left:0;right:0;top:900px;text-align:center;font-size:32px;color:var(--mute)">Built on <b style="color:var(--text)">Switch</b> + <b style="color:var(--text)">Claude Code</b> &nbsp;·&nbsp; Flip the Switch Hackathon 2026</div>
+</div>
+
+<script>
+const C=x=>x<0?0:x>1?1:x, seg=(t,a,b)=>C((t-a)/(b-a));
+const eo=x=>1-Math.pow(1-x,3), eio=x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;
+const $=id=>document.getElementById(id);
+const inr=n=>{n=Math.round(n);let s=String(n);if(s.length<=3)return s;let l=s.slice(-3),r=s.slice(0,-3);return r.replace(/\B(?=(\d{2})+(?!\d))/g,",")+","+l;};
+function show(el,t,a,dur=.6,dy=30){const p=eo(seg(t,a,a+dur));el.style.opacity=p;el.style.transform=`translateY(${(1-p)*dy}px)`;return p;}
+function pop(el,t,a,dur=.4){const x=seg(t,a,a+dur);const s=x<1?.6+.4*eo(x)+Math.sin(x*Math.PI)*.15:1;el.style.opacity=C(x*2);el.style.transform=`scale(${s})`;}
+const S=[["s1",0,7],["s2",7,17.5],["s3",17.5,31],["s4",31,40.5],["s5",40.5,53],["s6",53,63.5],["s7",63.5,76],["s8",76,85],["s9",85,93]];
+const DURATION=93;
+
+// build S5 nodes
+const nodes=[["raw_payments","src"],["stg_payments","pipe"],["int_transactions","pipe"],["fct_revenue","pipe"],["monthly_revenue","pipe"],["Dashboard","met"]];
+const bugs={0:["①","Oct 22 batches dead-lettered","epoch-ms timestamps rejected"],1:["②","auto_captured filtered out","UPI AutoPay payments dropped"],2:["③","refunds joined on order_id","split orders refunded twice"],4:["④","nightly job never rebuilds it","late Oct 31 data never shows"]};
+let h="";nodes.forEach((n,i)=>{const x=160+i*275;h+=`<div class="abs card mono" id="n${i}" style="left:${x}px;top:560px;width:230px;height:84px;font-size:21px;display:flex;align-items:center;justify-content:center;border-color:var(--${n[1]})">${n[0]}</div>`;
+ if(i<5)h+=`<div class="abs" id="a${i}" style="left:${x+232}px;top:598px;width:41px;height:4px;background:var(--line)"></div>`;
+ if(bugs[i]){const b=bugs[i];const up=(i%2==0);h+=`<div class="abs" id="b${i}" style="left:${x-20}px;top:${up?330:690}px;width:300px"><div style="font-size:46px;color:var(--red);font-weight:900">${b[0]}</div><div style="font-size:24px;font-weight:700;margin-top:4px">${b[1]}</div><div style="font-size:20px;color:var(--mute);margin-top:4px">${b[2]}</div></div>`;}});
+$("s5nodes").innerHTML=h;
+
+// S6 bars
+const L=[[119934,"Dead-lettered ingestion","src"],[208748,"auto_captured dropped","pipe"],[114376,"Stale monthly model","pipe"],[33270,"Refund fan-out","pipe"]];
+let x0=163,bh="",lh="";const W=1594/476328;
+L.forEach((l,i)=>{const w=l[0]*W;bh+=`<div class="abs" id="bar${i}" style="left:${x0}px;top:363px;width:${w}px;height:114px;background:var(--${l[2]});opacity:.85;transform-origin:left;border-right:3px solid var(--bg)"></div>`;
+ lh+=`<div class="abs" id="lab${i}" style="left:${x0}px;top:${i%2?600:500}px;width:${Math.max(w,300)}px"><div style="font-size:34px;font-weight:800">₹${inr(l[0])}</div><div style="font-size:22px;color:var(--mute)">${l[1]}</div></div>`;x0+=w;});
+$("s6bars").innerHTML=bh;$("s6labels").innerHTML=lh;
+
+// S7 cards
+const P=[["P-001","Keep auto_captured payments","ok",""],["P-002","Refund join on payment_id","rej","would silently drop ₹4,030 of refunds"],["P-003","Nightly job builds monthly_revenue","ok",""],["P-004","Backfill dead-lettered payments","rej","wrong keys · paise read as rupees (100×)"]];
+const P2={1:["P-005","Refund LEFT JOIN on payment_id"],3:["P-006","Backfill with real payload mapping"]};
+let ch="";P.forEach((p,i)=>{const x=160+i*410;
+ ch+=`<div class="abs card" id="c${i}" style="left:${x}px;top:340px;width:380px;height:300px;padding:28px"><div class="mono" style="font-size:26px;color:var(--pipe);font-weight:700">${p[0]}</div><div style="font-size:30px;font-weight:700;margin-top:14px;line-height:1.25">${p[1]}</div><div id="cn${i}" style="font-size:21px;color:var(--red);margin-top:16px">${p[3]}</div></div>`;
+ ch+=`<div class="abs stamp" id="st${i}" style="left:${x+60}px;top:670px;font-size:34px;color:var(--${p[2]=="ok"?"green":"red"});border-color:var(--${p[2]=="ok"?"green":"red"})">${p[2]=="ok"?"APPROVED":"REJECTED"}</div>`;
+ if(P2[i]){ch+=`<div class="abs card" id="cc${i}" style="left:${x}px;top:340px;width:380px;height:300px;padding:28px;border-color:var(--green)"><div class="mono" style="font-size:26px;color:var(--pipe);font-weight:700">${P2[i][0]}</div><div style="font-size:30px;font-weight:700;margin-top:14px;line-height:1.25">${P2[i][1]}</div><div style="font-size:21px;color:var(--green);margin-top:16px">re-proposed after review</div></div><div class="abs stamp" id="st2${i}" style="left:${x+60}px;top:670px;font-size:34px;color:var(--green);border-color:var(--green)">APPROVED</div>`;}});
+$("s7cards").innerHTML=ch;
+
+// S9 list
+const pts=["Specialist agents with least-privilege access","Every claim backed by a logged query","Every rupee reconciled","A human approves every fix","Verified in a sandbox before it ships"];
+$("s9list").innerHTML=pts.map((p,i)=>`<div id="pt${i}" style="font-size:44px;font-weight:600;margin:14px 0"><span style="color:var(--met)">✓</span>&nbsp; ${p}</div>`).join("");
+
+const chat=`FINDING SI-01: 31 Oct 22 payments never landed
+Observed: provider has them, raw does not
+Evidence: q_aed4a7ad0e (anti-join), q_280c9f8455
+Impact:   ₹1,19,934 (27 successful payments)
+Confidence: high`;
+
+window.render=function(t){
+ for(const [id,a,b] of S){const o=Math.min(eo(seg(t,a,a+.5)),1-seg(t,b-.5,b));$(id).style.opacity=(t>=a&&t<b)?o:0;$(id).style.display=(t>=a-.1&&t<b+.1)?"block":"none";}
+ // S1
+ show($("s1k"),t,.3);pop($("s1t"),t,.8,.7);show($("s1s"),t,2.0);$("s1bar").style.transform=`scaleX(${eio(seg(t,2.6,4.2))})`;
+ // S2
+ if(t>=7&&t<17.5){show($("s2a"),t,7.4);show($("s2b"),t,8.0);
+  $("s2an").textContent="₹"+inr(4149255*eio(seg(t,7.8,10)));$("s2bn").textContent="₹"+inr(4625583*eio(seg(t,8.4,10.6)));
+  pop($("s2gap"),t,11.4,.6);show($("s2q"),t,13.4);}
+ // S3
+ if(t>=17.5&&t<31){show($("s3h"),t,17.9);show($("s3you"),t,18.8);show($("s3o"),t,19.6);
+  const L0=$("l0");L0.style.opacity=seg(t,20.2,20.6);L0.style.strokeDashoffset=-t*40;
+  show($("s3s"),t,21.6);show($("s3p"),t,22.6);show($("s3m"),t,23.6);
+  ["l1","l2","l3"].forEach((l,i)=>{const e=$(l);e.style.opacity=seg(t,22+i,22.5+i);e.style.strokeDashoffset=-t*40;});
+  show($("s3f"),t,26);}
+ // S4
+ if(t>=31&&t<40.5){show($("s4c"),t,31.5);const n=Math.floor(chat.length*seg(t,32.2,36.2));$("s4txt").textContent=chat.slice(0,n)+(n<chat.length&&Math.floor(t*3)%2?"▌":"");
+  show($("s4log"),t,36.8);const ar=$("s4arrow");ar.style.strokeDasharray=300;ar.style.strokeDashoffset=300*(1-seg(t,36.6,37.4));}
+ // S5
+ if(t>=40.5&&t<53){nodes.forEach((n,i)=>{show($("n"+i),t,41+i*.25,.5,20);if(i<5){$("a"+i).style.opacity=seg(t,41.5+i*.25,41.9+i*.25)}});
+  [0,1,2,4].forEach((i,k)=>{const b=$("b"+i);if(b)pop(b,t,43.6+k*1.4,.5);const nd=$("n"+i);if(t>43.6+k*1.4)nd.style.boxShadow=`0 0 0 4px rgba(248,113,113,${.4+.3*Math.sin(t*5)})`;else nd.style.boxShadow="none";});
+  show($("s5d1"),t,49.6);show($("s5d2"),t,50.4);}
+ // S6
+ if(t>=53&&t<63.5){let ex=0;L.forEach((l,i)=>{const a=54+i*1.3,p=eio(seg(t,a,a+.9));$("bar"+i).style.transform=`scaleX(${p})`;show($("lab"+i),t,a+.4,.5,20);ex+=l[0]*p;});
+  $("s6exp").textContent="₹"+inr(ex);show($("s6sum"),t,54);pop($("s6zero"),t,59.8,.6);}
+ // S7
+ if(t>=63.5&&t<76){P.forEach((p,i)=>{show($("c"+i),t,64+i*.3);pop($("st"+i),t,66+i*.5,.4);$("cn"+i).style.opacity=seg(t,66+i*.5,66.4+i*.5);
+   if(P2[i]){const sw=seg(t,70.2+(i==3?.5:0),70.9+(i==3?.5:0));$("c"+i).style.opacity=1-sw;$("st"+i).style.opacity=t>66+i*.5?1-sw:0;const cc=$("cc"+i);cc.style.opacity=sw;cc.style.transform=`rotateY(${(1-sw)*90}deg)`;pop($("st2"+i),t,71.2+(i==3?.5:0),.4);}});
+  show($("s7note"),t,72.6);}
+ // S8
+ if(t>=76&&t<85){show($("s8t"),t,76.4);const f1=seg(t,77.6,78.6),f2=seg(t,78.4,79.6);
+  $("s8d1").textContent="₹"+inr(3308525+21000*eio(f1));$("s8d2").textContent="₹"+inr(4149255+476328*eio(f2));
+  $("s8d1").style.color=f1>=1?"var(--green)":"var(--text)";$("s8d2").style.color=f2>=1?"var(--green)":"var(--text)";
+  pop($("s8c1"),t,78.7,.35);pop($("s8c2"),t,79.7,.35);show($("s8dbt"),t,80.2);
+  const v=$("s8v"),x=seg(t,81,81.4);v.style.opacity=x>0?1:0;v.style.transform=`rotate(-8deg) scale(${x<1?2.2-1.2*eo(x):1})`;}
+ // S9
+ if(t>=85){pts.forEach((p,i)=>show($("pt"+i),t,85.6+i*.45,.5,20));show($("s9foot"),t,88.4);}
+};
+window.DURATION=DURATION;
+render(0);
+</script></body></html>

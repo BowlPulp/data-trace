@@ -2,6 +2,13 @@
 
 > **When your data doesn't add up, find out why.**
 
+<!-- INTRO VIDEO: on github.com, edit this file, delete this comment and drag
+     docs/media/datatrace-explainer.mp4 here. GitHub replaces it with a
+     https://github.com/user-attachments/assets/... link that plays inline. -->
+
+▶️ **90-second explainer:** [`docs/media/datatrace-explainer.mp4`](docs/media/datatrace-explainer.mp4)
+&nbsp;·&nbsp; **Full demo walkthrough:** _TODO: add link_
+
 DATA TRACE is a team of four AI agents that sits in your team chat and investigates data
 discrepancies the way a good data team does: each specialist looks at the part of the stack it is
 allowed to see, every claim comes with a query or a file reference, and nothing is fixed until a
@@ -15,7 +22,7 @@ Built on [Switch](https://docs.switchagents.ai/) and Claude Code for the
 | **Problem** | Finance's dashboard says October net revenue was **₹41,49,255**. The payment provider's statement says **₹46,25,583**. Nobody knows where **₹4,76,328** went. |
 | **What DATA TRACE does** | A person reports the gap in a Discord thread. Four agents split the investigation by access, report findings with evidence, reconcile the gap to **₹0 unexplained**, and propose fixes. A human approves; fixes are applied and verified in an isolated sandbox. |
 | **Result (rehearsal run 2)** | All 4 root causes found, gap reconciled to ₹0, decoys ruled out. 4 fixes proposed; human review rejected 2 flawed ones, agents corrected them; sandbox run **VERIFIED** — dashboard matches the provider to the rupee for every month. See [`docs/runs/run-02-report.md`](docs/runs/run-02-report.md). |
-| **Demo video** | _TODO: add link_ |
+| **Videos** | 90-second explainer (above) · full demo walkthrough: _TODO: add link_ |
 
 ---
 
@@ -582,6 +589,7 @@ always `@mention` who you're answering, and report anomalies that were ruled out
 | `logs/agent_queries/` | Query audit logs (gitignored) |
 | `remediation/` | Proposals, run workspaces, audit log (gitignored) |
 | `docs/runs/` | Reports from rehearsal runs |
+| `docs/media/` | Explainer video and its source (an HTML animation rendered frame by frame) |
 | `backend/`, `frontend/`, `lineage/` | Reserved for a future web UI; not used by the current workflow |
 | `docker-compose.yml` | The Postgres warehouse |
 
