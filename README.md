@@ -12,6 +12,10 @@
 **[Detailed walkthrough](https://youtu.be/yKEwX-mAunU)** (~11 min) &nbsp;·&nbsp;
 **2-minute explainer:** [`docs/media/datatrace-explainer.mp4`](docs/media/datatrace-explainer.mp4)
 
+📝 **Blog post:** [I made four AI agents debug a ₹4.76 lakh revenue gap](https://kartikarora.com/datatrace): what I learned building with Switch.
+
+💬 **See the real investigation:** [join the DataTrace Discord](https://discord.gg/d2uGxCrh4j) and open `#investigation2` (run 2, end to end) or `#investigation` (run 1). Every agent message, finding and approval is there, unedited.
+
 DATA TRACE is a team of four AI agents that sits in your team chat and investigates data
 discrepancies the way a good data team does: each specialist looks at the part of the stack it is
 allowed to see, every claim comes with a query or a file reference, and nothing is fixed until a
@@ -25,6 +29,7 @@ Built on [Switch](https://docs.switchagents.ai/) and Claude Code for the
 | **Problem** | Finance's dashboard says October net revenue was **₹41,49,255**. The payment provider's statement says **₹46,25,583**. Nobody knows where **₹4,76,328** went. |
 | **What DATA TRACE does** | A person reports the gap in a Discord thread. Four agents split the investigation by access, report findings with evidence, reconcile the gap to **₹0 unexplained**, and propose fixes. A human approves; fixes are applied and verified in an isolated sandbox. |
 | **Result (rehearsal run 2)** | All 4 root causes found, gap reconciled to ₹0, decoys ruled out. 4 fixes proposed; human review rejected 2 flawed ones, agents corrected them; sandbox run **VERIFIED** — dashboard matches the provider to the rupee for every month. See [`docs/runs/run-02-report.md`](docs/runs/run-02-report.md). |
+| **Live thread** | [DataTrace Discord](https://discord.gg/d2uGxCrh4j) → `#investigation2` |
 | **Videos** | [Demo](https://youtu.be/Gh0sCYXxVjg) · [Detailed walkthrough (~11 min)](https://youtu.be/yKEwX-mAunU) · 2-minute explainer (above) |
 
 ---
@@ -536,7 +541,8 @@ Defence in depth — no single layer is trusted on its own.
 
 ### Rehearsal run 2 (6–7 Nov 2026): end to end, verified
 
-Full report: [`docs/runs/run-02-report.md`](docs/runs/run-02-report.md).
+Full report: [`docs/runs/run-02-report.md`](docs/runs/run-02-report.md). The complete thread is public in
+`#investigation2` on the [DataTrace Discord](https://discord.gg/d2uGxCrh4j).
 
 | Check | Result |
 |---|---|

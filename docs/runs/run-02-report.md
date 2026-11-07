@@ -1,6 +1,6 @@
 # Rehearsal run 2: investigation → reviewed fixes → verified sandbox run (6–7 Nov 2026)
 
-Room: Discord `#investigation2` (Switch room), one thread. Started 4 Nov 19:50 IST; the agents'
+Room: Discord `#investigation2` (Switch room), one thread. Public: https://discord.gg/d2uGxCrh4j. Started 4 Nov 19:50 IST; the agents'
 sessions dropped and the warehouse was offline, so the investigation resumed on 6 Nov 21:41 IST
 and closed 7 Nov 02:40 IST. First run to go all the way through remediation.
 
