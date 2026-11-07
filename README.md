@@ -14,7 +14,7 @@ Built on [Switch](https://docs.switchagents.ai/) and Claude Code for the
 |---|---|
 | **Problem** | Finance's dashboard says October net revenue was **₹41,49,255**. The payment provider's statement says **₹46,25,583**. Nobody knows where **₹4,76,328** went. |
 | **What DATA TRACE does** | A person reports the gap in a Discord thread. Four agents split the investigation by access, report findings with evidence, reconcile the gap to **₹0 unexplained**, and propose fixes. A human approves; fixes are applied and verified in an isolated sandbox. |
-| **Result (rehearsal run 1)** | All 4 root causes found with correct mechanisms, gap fully reconciled, time-zone hypothesis ruled out with evidence. See [`docs/runs/run-01-report.md`](docs/runs/run-01-report.md). |
+| **Result (rehearsal run 2)** | All 4 root causes found, gap reconciled to ₹0, decoys ruled out. 4 fixes proposed; human review rejected 2 flawed ones, agents corrected them; sandbox run **VERIFIED** — dashboard matches the provider to the rupee for every month. See [`docs/runs/run-02-report.md`](docs/runs/run-02-report.md). |
 | **Demo video** | _TODO: add link_ |
 
 ---
@@ -524,6 +524,29 @@ Defence in depth — no single layer is trusted on its own.
 
 ## 10. Results
 
+### Rehearsal run 2 (6–7 Nov 2026): end to end, verified
+
+Full report: [`docs/runs/run-02-report.md`](docs/runs/run-02-report.md).
+
+| Check | Result |
+|---|---|
+| 4 root causes found, gap reconciled to ₹0 | ✅ |
+| Duplicate-row and provider-fee hypotheses ruled out with evidence | ✅ |
+| One fix proposal per root cause, each with evidence | ✅ |
+| Human review | rejected 2 of 4 (a backfill that would have crashed and inflated amounts 100×; a refund join that would have dropped ₹4,030 of refunds) → agents re-proposed correctly |
+| Sandbox run `R-20261107-023815` | ✅ **VERIFIED**: Sep ₹33,29,525 and Oct ₹46,25,583 match the provider exactly; dbt PASS=18 WARN=0 ERROR=0 |
+
+| Proposal | Fix | Outcome |
+|---|---|---|
+| P-001 | `stg_payments` keeps `auto_captured`; status test promoted from warn to error | applied |
+| P-003 | Nightly job builds `+monthly_revenue` | applied |
+| P-005 | Refunds join payments on `payment_id` (left join, every refund counted once) | applied |
+| P-006 | Backfill the 31 dead-lettered Oct 22 payments from their payload | applied |
+| P-002, P-004 | First versions of the two fixes above | rejected in review |
+
+This is the workflow working as designed: agents do the investigation and draft the fixes, a
+person reviews the diff and SQL, and nothing counts as fixed until the sandbox matches the provider.
+
 ### Rehearsal run 1 (4 Nov 2026)
 
 Scored against the hidden answer key (full report: [`docs/runs/run-01-report.md`](docs/runs/run-01-report.md)):
@@ -611,7 +634,7 @@ Connect manually: `psql "postgresql://$WAREHOUSE_ADMIN_USER@127.0.0.1:55432/data
 - [ ] Repository public, `.env` **not** committed (`git ls-files | grep -x .env` prints nothing)
 - [ ] This README up to date; demo video link added at the top
 - [ ] Demo video recorded (see outline below) and uploaded
-- [ ] Latest run report in `docs/runs/`
+- [x] Latest run report in `docs/runs/` (run 2: verified end to end)
 - [ ] Submission form filled (text below)
 - [ ] Optional: blog post (Best Blog side track), `#HowISwitch` social post
 
