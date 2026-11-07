@@ -6,8 +6,11 @@
      docs/media/datatrace-explainer.mp4 here. GitHub replaces it with a
      https://github.com/user-attachments/assets/... link that plays inline. -->
 
-▶️ **90-second explainer:** [`docs/media/datatrace-explainer.mp4`](docs/media/datatrace-explainer.mp4)
-&nbsp;·&nbsp; **Full demo walkthrough:** _TODO: add link_
+[![DataTrace demo video](https://img.youtube.com/vi/Gh0sCYXxVjg/hqdefault.jpg)](https://youtu.be/Gh0sCYXxVjg)
+
+▶️ **[Watch the demo](https://youtu.be/Gh0sCYXxVjg)** (short) &nbsp;·&nbsp;
+**[Detailed walkthrough](https://youtu.be/yKEwX-mAunU)** (~11 min) &nbsp;·&nbsp;
+**2-minute explainer:** [`docs/media/datatrace-explainer.mp4`](docs/media/datatrace-explainer.mp4)
 
 DATA TRACE is a team of four AI agents that sits in your team chat and investigates data
 discrepancies the way a good data team does: each specialist looks at the part of the stack it is
@@ -22,7 +25,7 @@ Built on [Switch](https://docs.switchagents.ai/) and Claude Code for the
 | **Problem** | Finance's dashboard says October net revenue was **₹41,49,255**. The payment provider's statement says **₹46,25,583**. Nobody knows where **₹4,76,328** went. |
 | **What DATA TRACE does** | A person reports the gap in a Discord thread. Four agents split the investigation by access, report findings with evidence, reconcile the gap to **₹0 unexplained**, and propose fixes. A human approves; fixes are applied and verified in an isolated sandbox. |
 | **Result (rehearsal run 2)** | All 4 root causes found, gap reconciled to ₹0, decoys ruled out. 4 fixes proposed; human review rejected 2 flawed ones, agents corrected them; sandbox run **VERIFIED** — dashboard matches the provider to the rupee for every month. See [`docs/runs/run-02-report.md`](docs/runs/run-02-report.md). |
-| **Videos** | 90-second explainer (above) · full demo walkthrough: _TODO: add link_ |
+| **Videos** | [Demo](https://youtu.be/Gh0sCYXxVjg) · [Detailed walkthrough (~11 min)](https://youtu.be/yKEwX-mAunU) · 2-minute explainer (above) |
 
 ---
 
@@ -640,8 +643,8 @@ Connect manually: `psql "postgresql://$WAREHOUSE_ADMIN_USER@127.0.0.1:55432/data
 *Creativity and impact*, *Presentation*.
 
 - [ ] Repository public, `.env` **not** committed (`git ls-files | grep -x .env` prints nothing)
-- [ ] This README up to date; demo video link added at the top
-- [ ] Demo video recorded (see outline below) and uploaded
+- [x] This README up to date; demo video link added at the top
+- [x] Demo video recorded and uploaded: https://youtu.be/Gh0sCYXxVjg (detailed: https://youtu.be/yKEwX-mAunU)
 - [x] Latest run report in `docs/runs/` (run 2: verified end to end)
 - [ ] Submission form filled (text below)
 - [ ] Optional: blog post (Best Blog side track), `#HowISwitch` social post
